@@ -10,15 +10,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.blueAccent,
+    return Scaffold(backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           "ToDoDo",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.blue),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.white,
       ),
-      
+
     );
   }
 }
