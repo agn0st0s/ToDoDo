@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tododo/utilities/dialog_box.dart';
 import 'package:tododo/utilities/todo_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,25 +10,47 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  // list of todo
+  List toDolist = [
+    ["make app",false],
+    ["improve app",false],
+  ];
+  // box changes
+  void checkBoxchanged(bool? value,int index){
+    setState(() {
+      toDolist[index][1]=!toDolist[index][1];
+    });
+  }
+  // new task
+  void createNewtask(){
+    showDialog(context: context, builder: (context) {
+      return DialogBox();
+    },);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[50],
+      backgroundColor: Colors.lightGreen[100],
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           "ToDoDo",
-          style: TextStyle(color: Colors.blue),
+          style: TextStyle(color: Colors.green),
         ),
-        backgroundColor: Colors.lightBlue[100],
+        backgroundColor: Colors.lightGreen[200],
       ),
-      body: ListView(
-        children: [
-          ToDoTile(
-            taskName: "make an app",
-            taskCompleted: true,
-            onChanged: (p0) {},
-          ),
-        ],
+      floatingActionButton: FloatingActionButton(
+        onPressed: createNewtask,
+        backgroundColor: Colors.lightGreen,
+        foregroundColor: Colors.white,
+        child: Icon(Icons.add)
+      ),
+      body: ListView.builder(
+        itemCount: toDolist.length,
+        itemBuilder:(context, index) {
+          return ToDoTile(taskName: toDolist[index][0], taskCompleted: toDolist[index][1], onChanged: (value)=>checkBoxchanged(value,index),);
+        },
       ),
     );
   }
