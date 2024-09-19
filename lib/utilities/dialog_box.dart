@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:tododo/utilities/my_button.dart';
 
 class DialogBox extends StatelessWidget {
   const DialogBox({super.key});
@@ -10,21 +13,33 @@ class DialogBox extends StatelessWidget {
       content: Container(
         height: 120,
         width: 250,
-        child:  Column(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             // user ip
             TextField(
-              cursorColor: Colors.black,
+              cursorColor: Colors.green,
               decoration: InputDecoration(
+                hintText: "Add a new task",
+                hintStyle: TextStyle(color: Colors.grey),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.lightGreen, width: 2),
+                  borderSide: BorderSide(color: Colors.lightGreen, width: 2,),
+                  borderRadius: BorderRadius.circular(22),
                 ),
-                 enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.lightGreen.shade300, width: 2.0),
-          ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide:
+                      BorderSide(color: Colors.lightGreen.shade300, width: 2),
+                  borderRadius: BorderRadius.circular(22),
+                ),
               ),
             ),
-            // others
+            //buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+              MyButton(text: "save", onPressed:(){}),
+              MyButton(text: "cancel", onPressed:(){}),
+            ],)
           ],
         ),
       ),
